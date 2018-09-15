@@ -1,6 +1,3 @@
-let c = document.getElementById("myCanvas");
-let ctx = c.getContext("2d");
-    
 function drawLine(sX, sY, eX, eY) {
     /*Draw a line from the starting X and Y positions to  the ending X and Y positions*/
     ctx.moveTo(sX, sY);
@@ -9,14 +6,14 @@ function drawLine(sX, sY, eX, eY) {
 
 function drawCell(x, y, cell) {
     /* Draw cell based on wall properties */
-    var left = cell.eastWall;
-    var right = cell.westWall;
-    var top = cell.northWall;
-    var bottom = cell.southWall;
+    let left = cell.eastWall;
+    let right = cell.westWall;
+    let top = cell.northWall;
+    let bottom = cell.southWall;
 
-    var size = 25;
+    let size = 25;
     ctx.beginPath();
-    ctx.lineWidth=5;
+    ctx.lineWidth=2;
     if (left) {
       drawLine(x, y, x, y + size);
     }
@@ -33,6 +30,11 @@ function drawCell(x, y, cell) {
       drawLine(x, y, x + size, y);
     }
     ctx.stroke();
+    ctx.closePath();
+
+    if(cell.breadcrumb === true){
+      drawBreadcrumb({x: cell.y, y: cell.x, color: 'red'})
+    }
   }
 
   function clearCanvas() {
@@ -47,5 +49,5 @@ function drawMatrix() {
         drawCell(i * side, j * side, matrix[j][i]);
       }
     }
+    drawProtagonist(protagonist1);
   }
-

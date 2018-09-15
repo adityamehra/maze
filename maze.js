@@ -1,5 +1,5 @@
-let row = 10;
-let column = 10;
+let row = 20;
+let column = 20;
 let matrix = [];
 let frontier = [];
 let N = 1, S = 2, E = 4, W = 8;
@@ -20,6 +20,7 @@ let Cell = {
     southWall: true,
     eastWall: true,
     westWall: true,
+    breadcrumb: false
 };
 
 function getRandomInt(min, max) {
@@ -28,7 +29,7 @@ function getRandomInt(min, max) {
 }
 
 function mark(x, y){
-    console.log(x + ", " + y);
+    // console.log(x + ", " + y);
     matrix[x][y].in = true;
     addFrontier(x-1, y)
     addFrontier(x+1, y)
@@ -128,8 +129,8 @@ function generateMaze(){
         }
     }
 
+    initilizeProtagonist()
     drawMatrix()
-
 }
 
 function demolishWall(cell){
@@ -155,15 +156,3 @@ function displayMaze(){
         }
     }
 }
-
-console.log(matrix);
-
-
-
-
-
-
-
-
-
-
